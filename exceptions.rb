@@ -1,4 +1,4 @@
-class CrashException < Exception
+class CrashException < StandardError
 
     attr_reader :message
 
