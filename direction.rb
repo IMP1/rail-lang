@@ -20,4 +20,8 @@ module Direction
         return Direction.turn(direction, 4)
     end
 
+    def self.secondary_directions(direction)
+        return [Direction.turn(direction, 1), Direction.turn(direction, -1)]
+    end
+
 end
