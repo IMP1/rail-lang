@@ -1,9 +1,11 @@
 class CrashException < StandardError
 
     attr_reader :message
+    attr_accessor :location
 
     def initialize(message="")
         @message = message
+        @location = nil
     end
 
 end
