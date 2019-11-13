@@ -9,7 +9,7 @@ end
 
 class Runner
 
-    def initialize(source)
+    def initialize(source, filename="")
         @stack = Stack.new
         @worlds = create_worlds(source)
         @current_function = RailFunction.new('main', @worlds['main'], @stack)
@@ -39,12 +39,17 @@ class Runner
         x, y = *train.position
         cells[y][x] = "\e[31m\e[7m" + cells[y][x] + "\e[0m"
         world_string = cells.map { |line| "\t" + line.join("") }.join("\n")
-        puts "Crash! #{exception.message}"
-        puts "\tin world #{@current_function.name}"
-        puts "\tat #{cell}"
-        puts
-        puts world_string
-        puts
+        $stderr.puts "Crash! #{exception.message}"
+        $stderr.puts "\tin world #{@current_function.name}"
+        $stderr.puts "\tat #{cell}"
+        $stderr.puts
+        $stderr.puts world_string
+        $stderr.puts
+        exception.location = {
+            function: @current_function.name,
+            cell: [x, y],
+        }
+        raise exception
     end
 
     def run
