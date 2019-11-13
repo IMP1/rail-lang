@@ -5,6 +5,7 @@ begin
 rescue LoadError
 
     puts "Couldn't find `console_colours.rb`. Printing results without pretty colours."
+    puts
 
     module ConsoleStyle
         BOLD_ON = ""
