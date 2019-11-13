@@ -26,8 +26,8 @@ class World
     end
 
     def cell_at(x, y)
-        return Cell.empty if @cells[y].nil?
-        return Cell.empty if @cells[y][x].nil?
+        return Cell.empty(x, y) if @cells[y].nil?
+        return Cell.empty(x, y) if @cells[y][x].nil?
         return @cells[y][x]
     end
 
