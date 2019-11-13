@@ -1,4 +1,4 @@
-def junction(cell, world, train, stack, direction)
+def junction(cell, world, train, stack, directions)
     unless directions.keys.include?(train.direction)
         raise PerpendicularRailCrash.new(cell)
     end
