@@ -2,8 +2,6 @@ require 'date'
 
 class Test
 
-    @@log_class = nil
-
     class AssertionError < RuntimeError
     end
 
@@ -19,8 +17,6 @@ class Test
             @start_time = nil
             @result = nil
             @thread = nil
-            @log = Test.log_class.new("Test") unless Test.log_class.nil?
-            # @log.set_level(Log::ALL) if $verbose
         end
         def started?
             return !@start_time.nil?
@@ -32,17 +28,19 @@ class Test
             @thread = Thread.new do
                 @start_time = DateTime.now
                 error = nil
+                standard_output = $stdout
+                $stdout = StringIO.new
                 begin
                     result_value = @block.call(*args)
                     success = true
                 rescue StandardError => e
-                    @log&.error(e)
-                    @log&.error(e.backtrace.first)
                     result_value = e
                     success = false
                 end
+                output = $stdout.string
+                $stdout = standard_output
                 end_time = DateTime.now
-                @result = TestResult.new(result_value, @start_time, end_time, success)
+                @result = TestResult.new(result_value, @start_time, end_time, success, output)
             end
             @thread.abort_on_exception = true
         end
@@ -96,8 +94,9 @@ class Test
         attr_accessor :success
         attr_reader :error
         attr_reader :value
+        attr_reader :output
 
-        def initialize(value, start_time, end_time, success)
+        def initialize(value, start_time, end_time, success, output=nil)
             @start_time = start_time
             @end_time = end_time
             @success = success
@@ -106,6 +105,7 @@ class Test
             else
                 @error = value
             end
+            @output = output
         end
     end
 
@@ -113,7 +113,7 @@ class Test
 
     def self.run(&block)
         test_run = TestRun.new(block)
-        if !@precondition_failures.empty?
+        unless @precondition_failures.empty?
             puts "Failed Pre-Conditions:"
             @precondition_failures.reject! { |msg| puts "  * " + msg; true }
             return TestRun::INVALID

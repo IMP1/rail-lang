@@ -6,7 +6,7 @@ $ \'main\'
   \      /
    -[1]-<
          \
-          --[1]-o-#
+          --[3]-o-#
 '
 
 runner = nil
@@ -25,6 +25,6 @@ test_run = Test.run do
 end
 
 test_run.ensure do |result|
-    p result
-    # assert that output == 1
+    assert(result.success)
+    assert(result.output.chomp == "3")
 end

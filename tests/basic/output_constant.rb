@@ -22,6 +22,6 @@ test_run = Test.run do
 end
 
 test_run.ensure do |result|
-    p result
-    # assert that output == 1
+    assert(result.success)
+    assert(result.output.chomp == "1")
 end
