@@ -6,22 +6,35 @@ class Train
     def initialize(*position)
         @position = [*position]
         @direction = Direction::SOUTH_EAST
+        @stopped = false
     end
 
-    def move(world, allow_empty=false)
-        # new_cell, x, y, dir = world.next_cell(*@position, @direction, allow_empty)
-        # unless dir.nil?
-        #     turn(dir)
-        # end
-        # @position = [x, y]
+    def stopped?
+        @stopped
+    end
+
+    def stop
+        @stopped = true
+    end
+
+    def move(world, force=false)
+        new_cell = world.cell_to_direction(*@position, @direction)
+        x, y = *new_cell.position
+        @position = [x, y]
+        if new_cell.empty? and not force
+            raise EmptySpaceCrash.new
+        end
+        if new_cell.unrecognised? and not force
+            raise UnrecognisedSymbolCrash.new
+        end
     end
 
     def turn(direction)
         @direction = direction
     end
 
-    def at?(cell, world)
-        return world.cell_at(*self.position).glyph == cell
+    def over?(glyph, world)
+        return world.cell_at(*self.position).glyph == glyph
     end
 
 end
