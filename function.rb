@@ -4,6 +4,7 @@ class RailFunction
 
     attr_reader :name
     attr_reader :world
+    attr_reader :train
     attr_reader :running
 
     def initialize(name, world, stack)
@@ -19,23 +20,17 @@ class RailFunction
         @running = true
         while @running
             @train.move(@world)
-            begin
-                tick
-            rescue InvalidRouteException => e
-                crash(e)
+            tick
+            if @train.stopped?
+                @running = false
             end
         end
-        @running = false
     end
 
     def tick
         x, y = *@train.position
         cell = @world.cell_at(x, y)
-        begin
-            cell.activate(@world, @train, @stack)
-        rescue CrashException => e
-            crash(e.to_s)
-        end
+        cell.activate(@world, @train, @stack)
     end
 
 end
