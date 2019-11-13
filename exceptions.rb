@@ -39,3 +39,9 @@ class UnrecognisedSymbolCrash < CrashException
         super("Unrecognised symbol")
     end
 end
+
+class StackUnderflowCrash < CrashException
+    def initialize
+        super("Stack underflow")
+    end
+end
