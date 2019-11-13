@@ -1,12 +1,20 @@
+require_relative 'cell'
+require_relative 'direction'
+
 class World
+    include Direction
 
     def initialize(glyph_map)
-        @cells = glyph_map.map { |line| line.map { |glyph| Cell.from_glyph(glyph) } }
+        @cells = glyph_map.map.with_index do |line, j| 
+            line.map.with_index do |glyph, i| 
+                Cell.from_glyph(glyph, i, j)
+            end
+        end
     end
 
     def self.parse(map_string)
-        glyphs = source.lines.map { |line| line.chomp.split("") }
-        return World.new(title, glyphs)
+        glyphs = map_string.lines.map { |line| line.chomp.split("") }
+        return World.new(glyphs)
     end
 
     def to_s
