@@ -2,6 +2,9 @@ def consume_function(world, train, stack, end_char)
     function_name_chars = []
     train.move(world, true)
     until train.over?(end_char, world)
+        unless world.on_map?(*train.position)
+            raise EmptySpaceCrash.new
+        end
         char = world.cell_at(*train.position).glyph
         function_name_chars.push(char)
         train.move(world, true)
