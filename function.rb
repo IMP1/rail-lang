@@ -30,7 +30,8 @@ class RailFunction
             @train.move(@world)
             tick
             if @train.redirected?
-                spawn_child(@train.redirection)
+                redirect(@train.redirection)
+                @train.redirect(nil)
             end
             if @train.stopped?
                 @running = false
@@ -54,14 +55,30 @@ class RailFunction
         end
     end
 
+    def redirect(redirection)
+        case 
+        when Hash
+            spawn_lambda(redirection)
+        when String
+            spawn_child(redirection)
+        end
+    end
+
     def spawn_child(function_name)
-        @train.redirect(nil)
         @running = false
         world = @all_worlds[function_name]
         if world.nil?
             raise UndefinedFunctionCrash.new(function_name)
         end
         @child = RailFunction.new(function_name, world, @stack, @all_worlds, self)
+        @child.run
+        @running = true
+    end
+
+    def spawn_lambda(lambda_details)
+        @running = false
+        current_position = [*@train.position]
+        @child = RailLambda.new("Lambda", lambda_details, @world, @stack, @variables, @all_worlds, self)
         @child.run
         @running = true
     end

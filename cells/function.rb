@@ -1,3 +1,8 @@
+def run_lambda(world, train, stack)
+    l = stack.pop
+    train.redirect(l)
+end
+
 def consume_function(world, train, stack, end_char)
     function_name_chars = []
     train.move(world, true)
@@ -10,9 +15,12 @@ def consume_function(world, train, stack, end_char)
         train.move(world, true)
     end
     train.move(world, true)
-    # function_name_chars.pop # Remove closing bracket
     function_name = function_name_chars.join("")
-    train.redirect(function_name)
+    if function_name.empty?
+        run_lambda(world, train, stack)
+    else
+        train.redirect(function_name)
+    end
 end
 
 Cell.create("Function", '{') do |cell, world, train, stack, env|
@@ -23,4 +31,11 @@ Cell.create("Function", '}') do |cell, world, train, stack, env|
     consume_function(world, train, stack, '{')
 end
 
-# TODO: Add lambdas here as well
+Cell.create("Lambda", '&') do |cell, world, train, stack, env|
+    l = { 
+        position: [*train.position], 
+        direction: train.direction 
+    }
+    stack.push(l)
+    train.turn(Direction.inverse(train.direction))
+end
