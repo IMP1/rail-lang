@@ -35,7 +35,7 @@ class Train
             raise EmptySpaceCrash.new
         end
         if new_cell.unrecognised? and not force
-            raise UnrecognisedSymbolCrash.new
+            raise UnrecognisedSymbolCrash.new(new_cell.glyph)
         end
     end
 
