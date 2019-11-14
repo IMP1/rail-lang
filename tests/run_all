@@ -93,6 +93,7 @@ $stdout = output
 
 if quiet
     $stdout = File.open(File::NULL, 'w')
+    $stderr = File.open(File::NULL, 'w')
 end
 
 

@@ -6,7 +6,7 @@ Test.require do
 
 end
 
-test_run = Test.run do
+test_run_1 = Test.run do
     source = '
 $ \'main\'
  \
@@ -16,7 +16,23 @@ $ \'main\'
     runner.run
 end
 
-test_run.ensure do |result|
+test_run_1.ensure do |result|
     assert(result.success)
     assert(result.output.chomp == "1")
+end
+
+
+test_run_2 = Test.run do
+    source = '
+$ \'main\'
+ \
+  --]12[-o-#
+'
+    runner = Runner.new(source)
+    runner.run
+end
+
+test_run_2.ensure do |result|
+    assert(result.success)
+    assert(result.output.chomp == "12")
 end

@@ -39,6 +39,4 @@ end
 test_run_2.ensure do |result|
     assert(result.failure)
     assert(result.error.is_a?(UndefinedFunctionCrash))
-    p result.error
-    p result.error.backtrace
 end

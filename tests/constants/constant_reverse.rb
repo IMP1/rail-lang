@@ -6,20 +6,18 @@ Test.require do
 
 end
 
-test_run = Test.run do
+test_run_1 = Test.run do
     source = '
 $ \'main\'
- \        --[2]-o-#
-  \      /
-   -[1]-<
-         \
-          --[3]-o-#
+ \
+  \
+#oo-[star]-@
 '
     runner = Runner.new(source)
     runner.run
 end
 
-test_run.ensure do |result|
+test_run_1.ensure do |result|
     assert(result.success)
-    assert(result.output.chomp == "3")
+    assert(result.output == "ratsstar")
 end
