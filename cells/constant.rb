@@ -4,12 +4,18 @@ def consume_constant(world, train, stack, end_char)
     constant_chars = []
     train.move(world, true)
     until train.over?(end_char, world)
+        unless world.on_map?(*train.position)
+            raise EmptySpaceCrash.new
+        end
         char = world.cell_at(*train.position).glyph
         constant_chars.push(char)
         if char == CONSTANT_ESCAPE_CHAR
             train.move(world, true)
             escaped_chars = []
             until train.over?(CONSTANT_ESCAPE_CHAR, world)
+                unless world.on_map?(*train.position)
+                    raise EmptySpaceCrash.new
+                end
                 escaped_char = world.cell_at(*train.position).glyph
                 constant_chars.push(escaped_char)
                 train.move(world, true)
