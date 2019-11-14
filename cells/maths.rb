@@ -7,7 +7,7 @@ Cell.create("Add", 'a') do |cell, world, train, stack, env|
     unless Type.numeric?(b)
         raise TypeMismatchCrash.new(Type::INTEGER, b)
     end
-    c = a + b
+    c = a.to_i + b.to_i
     stack.push(c.to_s)
 end
 
@@ -20,7 +20,7 @@ Cell.create("Divide", 'd') do |cell, world, train, stack, env|
     unless Type.numeric?(b)
         raise TypeMismatchCrash.new(Type::INTEGER, b)
     end
-    c = a / b
+    c = a.to_i / b.to_i
     stack.push(c.to_s)
 end
 
@@ -33,7 +33,7 @@ Cell.create("Multiply", 'm') do |cell, world, train, stack, env|
     unless Type.numeric?(b)
         raise TypeMismatchCrash.new(Type::INTEGER, b)
     end
-    c = a * b
+    c = a.to_i * b.to_i
     stack.push(c.to_s)
 end
 
@@ -46,7 +46,7 @@ Cell.create("Remainder", 'r') do |cell, world, train, stack, env|
     unless Type.numeric?(b)
         raise TypeMismatchCrash.new(Type::INTEGER, b)
     end
-    c = a % b
+    c = a.to_i % b.to_i
     stack.push(c.to_s)
 end
 
@@ -59,7 +59,7 @@ Cell.create("Subtract", 's') do |cell, world, train, stack, env|
     unless Type.numeric?(b)
         raise TypeMismatchCrash.new(Type::INTEGER, b)
     end
-    c = a - b
+    c = a.to_i - b.to_i
     stack.push(c.to_s)
 end
 
