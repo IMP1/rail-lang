@@ -23,6 +23,6 @@ test_run = Test.run do
 end
 
 test_run.ensure do |result|
-    assert(!result.success)
+    assert(result.failure)
     assert(result.error.is_a?(StackUnderflowCrash))
 end

@@ -1,21 +1,18 @@
 require_relative '../test'
 
-source = '
-$ \'main\'
- \
-  --[1]-o-#
-'
-
-runner = nil
-
 Test.require do
 
     require_relative '../../runner'
-    runner = Runner.new(source)
 
 end
 
 test_run = Test.run do
+    source = '
+$ \'main\'
+ \
+  --[1]-o-#
+'
+    runner = Runner.new(source)
     runner.run
 end
 

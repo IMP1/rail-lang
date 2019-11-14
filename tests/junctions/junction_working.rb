@@ -1,6 +1,13 @@
 require_relative '../test'
 
-source = '
+Test.require do
+
+    require_relative '../../runner'
+
+end
+
+test_run = Test.run do
+    source = '
 $ \'main\'
  \        --[2]-o-#
   \      /
@@ -8,17 +15,7 @@ $ \'main\'
          \
           --[3]-o-#
 '
-
-runner = nil
-
-Test.require do
-
-    require_relative '../../runner'
     runner = Runner.new(source)
-
-end
-
-test_run = Test.run do
     runner.run
 end
 
