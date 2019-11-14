@@ -56,7 +56,7 @@ class RailFunction
     end
 
     def redirect(redirection)
-        case 
+        case redirection
         when Hash
             spawn_lambda(redirection)
         when String
