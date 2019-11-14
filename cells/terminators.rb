@@ -5,3 +5,7 @@ end
 Cell.create("End", '#') do |cell, world, train, stack|
     train.stop
 end
+
+Cell.create("Boom", 'b') do |cell, world, train, stack|
+    raise BoomCrash.new(stack.pop)
+end

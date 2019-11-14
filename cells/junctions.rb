@@ -26,9 +26,13 @@ def junction(cell, world, train, stack, directions, branches)
         end
     end
     divert_value = stack.pop
-    outgoing_index = Type.to_boolean(divert_value) ? 1 : 0
+    unless Type.boolean?(divert_value)
+        raise TypeMismatchCrash.new(Type::BOOLEAN, divert_value)
+    end
+    outgoing_index = (divert_value == "1") ? 1 : 0
     train.turn(directions[train.direction][outgoing_index])
 end
+
 
 Cell.create("Junction", '<') do |cell, world, train, stack|
     directions = {

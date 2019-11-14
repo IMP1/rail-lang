@@ -19,3 +19,5 @@ end
 Cell.create("Function", '}') do |cell, world, train, stack|
     consume_function(world, train, stack, '{')
 end
+
+# TODO: Add lambdas here as well
