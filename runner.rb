@@ -11,9 +11,9 @@ end
 class Runner
 
     def initialize(source, filename="")
-        stack = Stack.new
-        worlds = create_worlds(source)
-        @current_function = RailFunction.new('main', worlds['main'], stack, worlds)
+        @stack = Stack.new
+        @worlds = create_worlds(source)
+        @main_function = RailFunction.new('main', @worlds['main'], @stack, @worlds)
     end
 
     def create_worlds(source)
@@ -33,21 +33,26 @@ class Runner
     end
 
     def crash(exception)
-        world = @current_function.world
-        train = @current_function.train
+        current_function = @main_function.current_function
+        world = current_function.world
+        train = current_function.train
+        func_name = current_function.name
         cell = world.cell_at(*train.position)
         cells = world.to_a.map { |line| line.map { |cell| cell.glyph } }
         x, y = *train.position
         cells[y][x] = "\e[31m\e[7m" + cells[y][x] + "\e[0m"
         world_string = cells.map { |line| "\t" + line.join("") }.join("\n")
         $stderr.puts "Crash! #{exception.message}"
-        $stderr.puts "\tin world #{@current_function.name}"
-        $stderr.puts "\tat #{cell}"
+        $stderr.puts "\tin world #{func_name}"
+        current_function.parents.reverse.each do |parent|
+            $stderr.puts "\tin world #{parent.name}"
+        end
+        $stderr.puts "\tat #{y+1}:#{x+1}"
         $stderr.puts
         $stderr.puts world_string
         $stderr.puts
         exception.location = {
-            function: @current_function.name,
+            function: func_name,
             cell: [x, y],
         }
         raise exception
@@ -55,7 +60,7 @@ class Runner
 
     def run
         begin
-            @current_function.run
+            @main_function.run
         rescue CrashException => e
             crash(e)
         end

@@ -7,7 +7,7 @@ class RailFunction
     attr_reader :train
     attr_reader :running
 
-    def initialize(name, world, stack, all_worlds)
+    def initialize(name, world, stack, all_worlds, parent=nil)
         @name = name
         @world = world
         @all_worlds = all_worlds
@@ -15,6 +15,8 @@ class RailFunction
         @variables = {}
         @running = false
         @train = Train.new(0, 0)
+        @child = nil
+        @parent = parent
     end
 
     def dump
@@ -36,6 +38,22 @@ class RailFunction
         end
     end
 
+    def current_function
+        unless @child.nil?
+            return @child
+        else
+            return self
+        end
+    end
+
+    def parents
+        if @parent.nil?
+            return []
+        else
+            return [*@parent.parents, @parent]
+        end
+    end
+
     def spawn_child(function_name)
         @train.redirect(nil)
         @running = false
@@ -43,8 +61,8 @@ class RailFunction
         if world.nil?
             raise UndefinedFunctionCrash.new(function_name)
         end
-        child = RailFunction.new(function_name, world, @stack, @all_worlds)
-        child.run
+        @child = RailFunction.new(function_name, world, @stack, @all_worlds, self)
+        @child.run
         @running = true
     end
 
