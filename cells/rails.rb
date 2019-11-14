@@ -19,7 +19,7 @@ def straight_rail(cell, world, train, primaries, perpendiculars)
         if secondary_cells.count { |cell| !cell.empty? } > 1
             raise AmbiguousConnectionCrash.new
         end
-        secondary_direction_index = secondary_cells.find_index { |cell| !cell.empty }
+        secondary_direction_index = secondary_cells.find_index { |cell| !cell.empty? }
         train.turn(secondary_directions[secondary_direction_index])
     end
 end
