@@ -69,7 +69,7 @@ class RailFunction
     def tick
         x, y = *@train.position
         cell = @world.cell_at(x, y)
-        cell.activate(@world, @train, @stack)
+        cell.activate(@world, @train, @stack, @variables)
     end
 
 end

@@ -34,7 +34,7 @@ def junction(cell, world, train, stack, directions, branches)
 end
 
 
-Cell.create("Junction", '<') do |cell, world, train, stack|
+Cell.create("Junction", '<') do |cell, world, train, stack, env|
     directions = {
         # incoming => [left_outgoing, right_outgoing],
         Direction::EAST => [Direction::NORTH_EAST, Direction::SOUTH_EAST],
@@ -46,7 +46,7 @@ Cell.create("Junction", '<') do |cell, world, train, stack|
     junction(cell, world, train, stack, directions, branches)
 end
 
-Cell.create("Junction", '>') do |cell, world, train, stack|
+Cell.create("Junction", '>') do |cell, world, train, stack, env|
     directions = {
         # incoming => [left_outgoing, right_outgoing],
         Direction::WEST => [Direction::SOUTH_WEST, Direction::NORTH_WEST],
@@ -61,7 +61,7 @@ end
 #  |
 #  ^
 # / \
-Cell.create("Junction", '^') do |cell, world, train, stack|
+Cell.create("Junction", '^') do |cell, world, train, stack, env|
     directions = {
         # incoming => [left_outgoing, right_outgoing],
         Direction::SOUTH => [Direction::SOUTH_EAST, Direction::SOUTH_WEST],
@@ -76,7 +76,7 @@ end
 # \ /
 #  v
 #  |
-Cell.create("Junction", 'v') do |cell, world, train, stack|
+Cell.create("Junction", 'v') do |cell, world, train, stack, env|
     directions = {
         # incoming => [left_outgoing, right_outgoing],
         Direction::NORTH => [Direction::NORTH_WEST, Direction::NORTH_EAST],
@@ -88,7 +88,7 @@ Cell.create("Junction", 'v') do |cell, world, train, stack|
     junction(cell, world, train, stack, directions, branches)
 end
 
-# Cell.create("Switch", '=') do |world, train, stack|
+# Cell.create("Switch", '=') do |world, train, stack, env|
 #     raise CrashException.new("Perpendicular rail") if train.direction == Direction::NORTH
 #     raise CrashException.new("Perpendicular rail") if train.direction == Direction::SOUTH
 #     divert = stack.pop

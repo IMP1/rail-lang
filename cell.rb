@@ -15,9 +15,9 @@ class Cell
         @action = action
     end
 
-    def activate(world, train, stack)
+    def activate(world, train, stack, env)
         return if @action.nil?
-        @action.call(self, world, train, stack)
+        @action.call(self, world, train, stack, env)
     end
 
     def empty?

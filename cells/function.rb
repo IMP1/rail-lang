@@ -12,11 +12,11 @@ def consume_function(world, train, stack, end_char)
     train.redirect(function_name)
 end
 
-Cell.create("Function", '{') do |cell, world, train, stack|
+Cell.create("Function", '{') do |cell, world, train, stack, env|
     consume_function(world, train, stack, '}')
 end
 
-Cell.create("Function", '}') do |cell, world, train, stack|
+Cell.create("Function", '}') do |cell, world, train, stack, env|
     consume_function(world, train, stack, '{')
 end
 

@@ -29,10 +29,10 @@ def consume_constant(world, train, stack, end_char)
     stack.push(constant)
 end
 
-Cell.create("Constant", '[') do |cell, world, train, stack|
+Cell.create("Constant", '[') do |cell, world, train, stack, env|
     consume_constant(world, train, stack, ']')
 end
 
-Cell.create("Constant", ']') do |cell, world, train, stack|
+Cell.create("Constant", ']') do |cell, world, train, stack, env|
     consume_constant(world, train, stack, '[')
 end

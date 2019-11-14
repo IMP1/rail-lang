@@ -1,4 +1,4 @@
-Cell.create("Add", 'a') do |cell, world, train, stack|
+Cell.create("Add", 'a') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
@@ -11,7 +11,7 @@ Cell.create("Add", 'a') do |cell, world, train, stack|
     stack.push(c.to_s)
 end
 
-Cell.create("Divide", 'd') do |cell, world, train, stack|
+Cell.create("Divide", 'd') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
@@ -24,7 +24,7 @@ Cell.create("Divide", 'd') do |cell, world, train, stack|
     stack.push(c.to_s)
 end
 
-Cell.create("Multiply", 'm') do |cell, world, train, stack|
+Cell.create("Multiply", 'm') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
@@ -37,7 +37,7 @@ Cell.create("Multiply", 'm') do |cell, world, train, stack|
     stack.push(c.to_s)
 end
 
-Cell.create("Remainder", 'r') do |cell, world, train, stack|
+Cell.create("Remainder", 'r') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
@@ -50,7 +50,7 @@ Cell.create("Remainder", 'r') do |cell, world, train, stack|
     stack.push(c.to_s)
 end
 
-Cell.create("Subtract", 's') do |cell, world, train, stack|
+Cell.create("Subtract", 's') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
@@ -64,7 +64,7 @@ Cell.create("Subtract", 's') do |cell, world, train, stack|
 end
 
 (0..9).each do |i|
-    Cell.create(i.to_s, i.to_s) do |cell, world, train, stack|
+    Cell.create(i.to_s, i.to_s) do |cell, world, train, stack, env|
         num = i.to_s
         stack.push(num)
     end
