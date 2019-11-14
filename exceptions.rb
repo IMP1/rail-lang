@@ -45,3 +45,9 @@ class StackUnderflowCrash < CrashException
         super("Stack underflow")
     end
 end
+
+class TypeMismatchCrash < CrashException
+    def initialize(expected, actual)
+        super("Type Mismatch: Expected something of type #{expected}, but got #{actual}")
+    end
+end

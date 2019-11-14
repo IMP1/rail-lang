@@ -25,8 +25,8 @@ def junction(cell, world, train, stack, directions, branches)
             raise UnconnectedJunctionCrash.new
         end
     end
-    divert = stack.pop
-    outgoing_index = divert ? 1 : 0
+    divert_value = stack.pop
+    outgoing_index = Type.to_boolean(divert_value) ? 1 : 0
     train.turn(directions[train.direction][outgoing_index])
 end
 
