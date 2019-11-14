@@ -51,3 +51,15 @@ class TypeMismatchCrash < CrashException
         super("Type Mismatch: Expected something of type #{expected}, but got #{actual}")
     end
 end
+
+class UndefinedVariableCrash < CrashException
+    def initialize(variable_name)
+        super("Undefined variable: #{variable_name}")
+    end
+end
+
+class UndefinedFunctionCrash < CrashException
+    def initialize(function_name)
+        super("Undefined function: #{function_name}")
+    end
+end
