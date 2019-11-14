@@ -44,7 +44,6 @@ $ \'countdown\'
                    \--0--o-#
 '
     runner = Runner.new(source)
-    $stderr.puts ARGV.inspect
     runner.run
 end
 

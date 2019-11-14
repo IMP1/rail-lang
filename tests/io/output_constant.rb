@@ -36,3 +36,20 @@ test_run_2.ensure do |result|
     assert(result.success)
     assert(result.output.chomp == "12")
 end
+
+
+
+test_run_2 = Test.run do
+    source = '
+$ \'main\'
+ \
+  --[1]o#
+'
+    runner = Runner.new(source)
+    runner.run
+end
+
+test_run_2.ensure do |result|
+    assert(result.success)
+    assert(result.output.chomp == "1")
+end
