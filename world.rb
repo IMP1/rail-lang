@@ -31,6 +31,12 @@ class World
         return @cells[y][x]
     end
 
+    def on_map?(x, y)
+        return false if @cells[y].nil?
+        return false if @cells[y][x].nil?
+        return true
+    end
+
     def cell_to_direction(x, y, direction)
         if [EAST, SOUTH_EAST, NORTH_EAST].include?(direction)
             x += 1
