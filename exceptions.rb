@@ -35,8 +35,8 @@ class EmptySpaceCrash < CrashException
 end
 
 class UnrecognisedSymbolCrash < CrashException
-    def initialize
-        super("Unrecognised symbol")
+    def initialize(glyph)
+        super("Unrecognised symbol '#{glyph}'")
     end
 end
 
@@ -61,5 +61,17 @@ end
 class UndefinedFunctionCrash < CrashException
     def initialize(function_name)
         super("Undefined function: #{function_name}")
+    end
+end
+
+class InputUnderflowCrash < CrashException
+    def initialize
+        super("Input underflow")
+    end
+end
+
+class BoomCrash < CrashException
+    def initialize(value)
+        super("Boom! #{value}")
     end
 end
