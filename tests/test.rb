@@ -111,6 +111,16 @@ class Test
         def failure
             !@success
         end
+
+        def dump
+            puts "Value:"
+            puts @value.inspect
+            puts "Output:"
+            puts @output
+            puts "Errors:"
+            puts @error.inspect
+            puts @error&.backtrace
+        end
     end
 
     @precondition_failures = []
