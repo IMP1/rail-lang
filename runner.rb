@@ -2,6 +2,7 @@ require_relative 'exceptions'
 require_relative 'stack'
 require_relative 'world'
 require_relative 'function'
+require_relative 'type'
 
 Dir["cells/**/*.rb"].each do |cell_file|
     load(cell_file)
