@@ -1,4 +1,4 @@
-ESCAPE_CHAR = "\\"
+CONSTANT_ESCAPE_CHAR = "\\"
 
 def consume_constant(world, train, stack, end_char)
     constant_chars = []
@@ -6,15 +6,15 @@ def consume_constant(world, train, stack, end_char)
         train.move(world, true)
         char = world.cell_at(*train.position).glyph
         constant_chars.push(char)
-        if char == ESCAPE_CHAR
+        if char == CONSTANT_ESCAPE_CHAR
             train.move(world, true)
             escaped_chars = []
-            until train.over?(ESCAPE_CHAR, world)
+            until train.over?(CONSTANT_ESCAPE_CHAR, world)
                 escaped_char = world.cell_at(*train.position).glyph
                 constant_chars.push(escaped_char)
                 train.move(world, true)
             end
-            constant_chars.push(ESCAPE_CHAR)
+            constant_chars.push(CONSTANT_ESCAPE_CHAR)
         end
     end
     constant_chars.pop # Remove closing bracket
