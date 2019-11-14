@@ -99,7 +99,7 @@ end
 results = []
 
 Dir[__dir__ + '/*/**/*.rb'].each do |filepath| 
-    local_name = filepath.split('/')[3..-1].join('/')
+    local_name = (filepath.split('/') - __dir__.split('/')).join('/')
     
     run_test(local_name, filepath, results)
 end
