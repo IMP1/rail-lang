@@ -18,7 +18,6 @@ def consume_variable(world, train, stack, env, end_char)
             train.move(world, true)
         end
         train.move(world, true) # Skip over VARIABLE_DECLARATION_CHAR
-        train.move(world, true) # Skip over end_char
     else
         until train.over?(end_char, world)
             unless world.on_map?(*train.position)
@@ -28,7 +27,6 @@ def consume_variable(world, train, stack, env, end_char)
             variable_chars.push(char)
             train.move(world, true)
         end
-        train.move(world, true) # Skip over end_char
     end
     variable = variable_chars.join("")
     if assignment

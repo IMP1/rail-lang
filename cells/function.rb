@@ -14,7 +14,6 @@ def consume_function(world, train, stack, end_char)
         function_name_chars.push(char)
         train.move(world, true)
     end
-    train.move(world, true)
     function_name = function_name_chars.join("")
     if function_name.empty?
         run_lambda(world, train, stack)

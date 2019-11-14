@@ -24,7 +24,6 @@ def consume_constant(world, train, stack, end_char)
         end
         train.move(world, true)
     end
-    train.move(world, true) # Skip over end_char
     constant = constant_chars.join("")
     # Handle special characters
     constant.gsub!(/\\\\/, "\\")
