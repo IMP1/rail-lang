@@ -29,9 +29,7 @@ class Test
                 @start_time = DateTime.now
                 error = nil
                 standard_output = $stdout
-                standard_error = $stderr
                 $stdout = StringIO.new
-                $stderr = StringIO.new
                 begin
                     result_value = @block.call(*args)
                     success = true
@@ -40,9 +38,7 @@ class Test
                     success = false
                 end
                 output = $stdout.string
-                output += $stderr.string
                 $stdout = standard_output
-                $stderr = standard_error
                 end_time = DateTime.now
                 @result = TestResult.new(result_value, @start_time, end_time, success, output)
             end
@@ -100,7 +96,7 @@ class Test
         attr_reader :value
         attr_reader :output
 
-        def initialize(value, start_time, end_time, success, output=nil)
+        def initialize(value, start_time, end_time, success, output)
             @start_time = start_time
             @end_time = end_time
             @success = success
