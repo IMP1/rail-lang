@@ -75,3 +75,9 @@ class BoomCrash < CrashException
         super("Boom! #{value}")
     end
 end
+
+class IndexOutOfBoundsCrash < CrashException
+    def initialize(obj, index)
+        super("Index out of bounds: #{index} in #{obj.inspect}")
+    end
+end
