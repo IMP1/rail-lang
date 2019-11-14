@@ -6,8 +6,7 @@ module Type
     LAMBDA  = "lambda"
 
     def self.boolean?(value)
-        return false unless /\d+/ =~ value
-        return value == "1"
+        return /[10]/ =~ value
     end
 
     def self.numeric?(value)
@@ -22,7 +21,7 @@ module Type
         unless Type.boolean?(value)
             raise TypeMismatchCrash.new(BOOLEAN, value)
         end
-        return value.to_i == 1
+        return (value.to_i == "1") ? "1" : "0"
     end
 
     def self.to_lambda(value)
