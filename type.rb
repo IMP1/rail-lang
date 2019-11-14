@@ -6,14 +6,17 @@ module Type
     LAMBDA  = "lambda"
 
     def self.boolean?(value)
+        return false if value.is_a?(Array)
         return /[10]/ =~ value
     end
 
     def self.numeric?(value)
+        return false if value.is_a?(Array)
         return /\d+/ =~ value
     end
 
     def self.lambda?(value)
+        return false if value.is_a?(Array)
         return nil # TODO: How should this be implemented?
     end
 
