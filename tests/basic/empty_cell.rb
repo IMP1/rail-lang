@@ -19,7 +19,7 @@ end
 
 test_run_1.ensure do |result|
     assert(result.failure)
-    assert(result.error.is_a?(UnconnectedJunctionCrash))
+    assert(result.error.is_a?(EmptySpaceCrash))
     assert(result.error.location[:cell] == [4, 3])
 end
 
@@ -37,7 +37,7 @@ end
 
 test_run_2.ensure do |result|
     assert(result.failure)
-    assert(result.error.is_a?(UnconnectedJunctionCrash))
+    assert(result.error.is_a?(EmptySpaceCrash))
     assert(result.error.location[:cell] == [1, 1])
 end
 
@@ -55,6 +55,6 @@ end
 
 test_run_3.ensure do |result|
     assert(result.failure)
-    assert(result.error.is_a?(UnconnectedJunctionCrash))
+    assert(result.error.is_a?(EmptySpaceCrash))
     assert(result.error.location[:cell] == [2, 2])
 end

@@ -15,7 +15,7 @@ $ \'main\'
 
 $ \'countdown\'
  \
-  \                /-(a)-o--1-(a)-s-{main}-#
+  \                /-(a)-o--1-(a)-s-{countdown}-#
    -(!a!)-(a)-0-q-<
                    \--0--o-#
 '
@@ -26,6 +26,4 @@ end
 test_run_1.ensure do |result|
     assert(result.success)
     assert(result.output == "3210")
-    puts "Output:"
-    puts result.output
 end
