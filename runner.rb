@@ -40,6 +40,8 @@ class Runner
         cell = world.cell_at(*train.position)
         cells = world.to_a.map { |line| line.map { |cell| cell.glyph } }
         x, y = *train.position
+        cells[y] ||= []
+        cells[y][x] ||= " "
         cells[y][x] = "\e[31m\e[7m" + cells[y][x] + "\e[0m"
         world_string = cells.map { |line| "\t" + line.join("") }.join("\n")
         $stderr.puts "Crash! #{exception.message}"
