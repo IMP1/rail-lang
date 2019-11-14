@@ -42,7 +42,7 @@ Cell.create("Rail", '\\') do |cell, world, train, stack|
     straight_rail(cell, world, train, primaries, perpendiculars)
 end
 
-Cell.create("Rail", '//') do |cell, world, train, stack|
+Cell.create("Rail", '/') do |cell, world, train, stack|
     primaries = [Direction::NORTH_EAST, Direction::SOUTH_WEST]
     perpendiculars = [Direction::NORTH_WEST, Direction::SOUTH_EAST]
     straight_rail(cell, world, train, primaries, perpendiculars)
