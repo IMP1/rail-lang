@@ -11,9 +11,9 @@ end
 class Runner
 
     def initialize(source, filename="")
-        @stack = Stack.new
-        @worlds = create_worlds(source)
-        @current_function = RailFunction.new('main', @worlds['main'], @stack)
+        stack = Stack.new
+        worlds = create_worlds(source)
+        @current_function = RailFunction.new('main', worlds['main'], stack, worlds)
     end
 
     def create_worlds(source)
