@@ -2,11 +2,21 @@ class Train
 
     attr_reader :position
     attr_reader :direction
+    attr_reader :redirection
 
     def initialize(*position)
         @position = [*position]
         @direction = Direction::SOUTH_EAST
         @stopped = false
+        @redirection = nil
+    end
+
+    def redirected?
+        !@redirection.nil?
+    end
+
+    def redirect(new_function)
+        @redirection = new_function
     end
 
     def stopped?
