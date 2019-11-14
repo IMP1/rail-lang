@@ -111,6 +111,10 @@ class Test
             end
             @output = output
         end
+
+        def failure
+            !@success
+        end
     end
 
     @precondition_failures = []

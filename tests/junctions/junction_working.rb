@@ -18,8 +18,6 @@ Test.require do
 
 end
 
-$verbose = true
-
 test_run = Test.run do
     runner.run
 end
