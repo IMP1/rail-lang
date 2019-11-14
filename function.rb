@@ -7,13 +7,19 @@ class RailFunction
     attr_reader :train
     attr_reader :running
 
-    def initialize(name, world, stack)
+    def initialize(name, world, stack, all_worlds)
         @name = name
         @world = world
-        @variables = {}
+        @all_worlds = all_worlds
         @stack = stack
+        @variables = {}
         @running = false
         @train = Train.new(0, 0)
+    end
+
+    def dump
+        x, y = *@train.position
+        $stderr.puts "[#{@name}: #{x}, #{y}] #{@world.cell_at(x, y).glyph}"
     end
 
     def run
@@ -21,10 +27,25 @@ class RailFunction
         while @running
             @train.move(@world)
             tick
+            if @train.redirected?
+                spawn_child(@train.redirection)
+            end
             if @train.stopped?
                 @running = false
             end
         end
+    end
+
+    def spawn_child(function_name)
+        @train.redirect(nil)
+        @running = false
+        world = @all_worlds[function_name]
+        if world.nil?
+            raise UndefinedFunctionCrash.new(function_name)
+        end
+        child = RailFunction.new(function_name, world, @stack, @all_worlds)
+        child.run
+        @running = true
     end
 
     def tick
