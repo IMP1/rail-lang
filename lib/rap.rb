@@ -6,10 +6,6 @@ module RubyArgParse
 
     def self.call(func)
         args, kwargs = parse(func)
-        puts "Arguments:"
-        p ARGV
-        p args
-        p kwargs
         func.call(*args, **kwargs)
     end
 
@@ -18,8 +14,6 @@ module RubyArgParse
         args = []
         flags = []
         kwargs = {}
-        puts "Parameters:"
-        p func.parameters
         func.parameters.select { |param| FLAG.include?(param[0]) }.each do |param|
             i = cli_args.index { |a| a == "--#{param[1].to_s}" }
             if i.nil?
