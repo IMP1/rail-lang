@@ -4,6 +4,8 @@ module Type
     NUMBER  = "number"
     STRING  = "string"
     LAMBDA  = "lambda"
+    LIST    = "list"
+    NIL     = "nil"
 
     def self.boolean?(value)
         return false if value.is_a?(Array)
@@ -32,6 +34,17 @@ module Type
             raise TypeMismatchCrash.new(LAMBDA, value)
         end
         return nil # TODO: How should this be represented?
+    end
+
+    def self.get_type(value)
+        case value
+        when Hash
+            return LAMBDA
+        when Array
+            return value.empty? ? NIL : LIST
+        else
+            return STRING
+        end
     end
 
 end
