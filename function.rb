@@ -41,7 +41,7 @@ class RailFunction
 
     def current_function
         unless @child.nil?
-            return @child
+            return @child.current_function
         else
             return self
         end
