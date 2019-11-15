@@ -65,7 +65,7 @@ end
 
 (0..9).each do |i|
     Cell.create(i.to_s, i.to_s) do |cell, world, train, stack, env|
-        num = i.to_s
-        stack.push(num)
+        num = i
+        stack.push(num.to_s)
     end
 end
