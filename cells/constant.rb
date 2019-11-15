@@ -26,11 +26,11 @@ def consume_constant(world, train, stack, end_char)
     end
     constant = constant_chars.join("")
     # Handle special characters
-    constant.gsub!(/\\\\/, "\\")
     constant.gsub!(/\\\[\\/, "[")
     constant.gsub!(/\\\]\\/, "]")
     constant.gsub!(/\\n\\/, "\n")
     constant.gsub!(/\\t\\/, "\t")
+    constant.gsub!(/\\\\/, "\\")
     stack.push(constant)
 end
 
