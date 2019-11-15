@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib/rap'
+
+def main(input_path, verbose=nil, silent=nil, help=nil, output_path: "")
+    puts
+    puts "Input   : #{input_path}"
+    puts "Verbose : #{verbose.to_s}"
+    puts "Silent  : #{silent.to_s}"
+    puts "Help    : #{help.to_s}"
+    puts "Output  : #{output_path}"
+end
+
+RubyArgParse.call(method(:main))
