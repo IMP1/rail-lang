@@ -1,14 +1,16 @@
 #!/usr/bin/env ruby
 
 require_relative 'lib/rap'
+require_relative 'runner'
 
-def main(input_path, verbose=nil, silent=nil, help=nil, output_path: "")
-    puts
-    puts "Input   : #{input_path}"
-    puts "Verbose : #{verbose.to_s}"
-    puts "Silent  : #{silent.to_s}"
-    puts "Help    : #{help.to_s}"
-    puts "Output  : #{output_path}"
+def main(input_path, verbose=nil, silent=nil, help=nil, initial_function: "main")
+    source = File.read(input_path)
+    runner = Runner.new(source, input_path)
+    begin
+        runner.run(initial_function)
+    rescue StandardError => e
+        
+    end
 end
 
 RubyArgParse.call(method(:main))
