@@ -2,10 +2,10 @@ Cell.create("Add", 'a') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
-        raise TypeMismatchCrash.new(Type::INTEGER, a)
+        raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
     unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+        raise TypeMismatchCrash.new(Type::NUMBER, b)
     end
     c = a.to_i + b.to_i
     stack.push(c.to_s)
@@ -15,10 +15,10 @@ Cell.create("Divide", 'd') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
-        raise TypeMismatchCrash.new(Type::INTEGER, a)
+        raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
     unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+        raise TypeMismatchCrash.new(Type::NUMBER, b)
     end
     c = a.to_i / b.to_i
     stack.push(c.to_s)
@@ -28,10 +28,10 @@ Cell.create("Multiply", 'm') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
-        raise TypeMismatchCrash.new(Type::INTEGER, a)
+        raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
     unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+        raise TypeMismatchCrash.new(Type::NUMBER, b)
     end
     c = a.to_i * b.to_i
     stack.push(c.to_s)
@@ -41,10 +41,10 @@ Cell.create("Remainder", 'r') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
-        raise TypeMismatchCrash.new(Type::INTEGER, a)
+        raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
     unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+        raise TypeMismatchCrash.new(Type::NUMBER, b)
     end
     c = a.to_i % b.to_i
     stack.push(c.to_s)
@@ -54,10 +54,10 @@ Cell.create("Subtract", 's') do |cell, world, train, stack, env|
     a = stack.pop
     b = stack.pop
     unless Type.numeric?(a)
-        raise TypeMismatchCrash.new(Type::INTEGER, a)
+        raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
     unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+        raise TypeMismatchCrash.new(Type::NUMBER, b)
     end
     c = a.to_i - b.to_i
     stack.push(c.to_s)
