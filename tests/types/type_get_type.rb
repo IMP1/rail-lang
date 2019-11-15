@@ -75,3 +75,19 @@ test_run_4.ensure do |result|
     assert(result.success)
     assert(result.output.chomp == Type::LAMBDA)
 end
+
+
+test_run_4 = Test.run do
+    source = '
+$ \'main\'
+ \
+  --1-?-o-#
+'
+    runner = Runner.new(source)
+    runner.run
+end
+
+test_run_4.ensure do |result|
+    assert(result.success)
+    assert(result.output.chomp == Type::STRING)
+end
