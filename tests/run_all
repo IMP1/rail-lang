@@ -8,9 +8,9 @@ rescue LoadError
     puts
 
     module ConsoleStyle
+        RESET = ""
         BOLD_ON = ""
         FG_CYAN = ""
-        RESET = ""
         FG_GREEN = ""
         FG_RED = ""
     end
