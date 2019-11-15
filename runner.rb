@@ -14,7 +14,6 @@ class Runner
     def initialize(source, filename="")
         @stack = Stack.new
         @worlds = create_worlds(source)
-        @main_function = RailFunction.new('main', @worlds['main'], @stack, @worlds)
     end
 
     def create_worlds(source)
@@ -34,7 +33,7 @@ class Runner
     end
 
     def crash(exception)
-        current_function = @main_function.current_function
+        current_function = @function.current_function
         world = current_function.world
         train = current_function.train
         func_name = current_function.name
@@ -61,9 +60,13 @@ class Runner
         raise exception
     end
 
-    def run
+    def run(func_name="main")
+        if @worlds[func_name].nil?
+            crash(UndefinedFunctionCrash.new(func_name))
+        end
+        @function = RailFunction.new(func_name, @worlds[func_name], @stack, @worlds)
         begin
-            @main_function.run
+            @function.run
         rescue CrashException => e
             crash(e)
         end
