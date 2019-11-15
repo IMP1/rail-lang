@@ -69,6 +69,8 @@ class Runner
             @function.run
         rescue CrashException => e
             crash(e)
+        rescue StandardError => e
+            crash(e)
         end
     end
 
