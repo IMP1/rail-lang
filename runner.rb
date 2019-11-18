@@ -45,11 +45,13 @@ class Runner
         cells[y][x] = "\e[31m\e[7m" + cells[y][x] + "\e[0m"
         world_string = cells.map { |line| "\t" + line.join("") }.join("\n")
         $stderr.puts "Crash! #{exception.message}"
-        $stderr.puts "\tin world #{func_name}  (#{current_function.world.filename})"
-        current_function.parents.reverse.each do |parent|
-            $stderr.puts "\tin world #{parent.name}  (#{current_function.world.filename})"
-        end
         $stderr.puts "\tat #{y+1}:#{x+1}"
+        function_stack = [*current_function.parents, current_function]
+        function_stack.reverse.chunk { |func| func.name }.each do |function_name, recursions|
+            $stderr.print "\tin world #{function_name}  (#{recursions.first.world.filename})"
+            $stderr.print "  (Recursion depth of #{recursions.size})" if recursions.size > 1
+            $stderr.print "\n"
+        end
         $stderr.puts
         $stderr.puts world_string
         $stderr.puts
