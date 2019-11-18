@@ -1,14 +1,15 @@
 Cell.create("Cut", 'c') do |cell, world, train, stack, env|
-    a = stack.pop
-    b = stack.pop
-    unless Type.numeric?(b)
-        raise TypeMismatchCrash.new(Type::INTEGER, b)
+    str = stack.pop
+    idx = stack.pop
+    unless Type.numeric?(idx)
+        raise TypeMismatchCrash.new(Type::NUMBER, idx)
     end
-    unless b >= 0 and b <= a.length
-        raise IndexOutOfBoundsCrash.new(a, b)
+    idx = idx.to_i
+    unless idx >= 0 and idx <= str.length
+        raise IndexOutOfBoundsCrash.new(str, idx)
     end
-    c = a[0...b]
-    d = a[b..-1]
+    c = str[0...idx]
+    d = str[idx..-1]
     stack.push(c)
     stack.push(d)
 end
