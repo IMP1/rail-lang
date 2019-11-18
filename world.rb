@@ -4,7 +4,10 @@ require_relative 'direction'
 class World
     include Direction
 
-    def initialize(glyph_map)
+    attr_reader :filename
+
+    def initialize(glyph_map, filename)
+        @filename = filename
         @cells = glyph_map.map.with_index do |line, j| 
             line.map.with_index do |glyph, i| 
                 Cell.from_glyph(glyph, i, j)
@@ -12,9 +15,9 @@ class World
         end
     end
 
-    def self.parse(map_string)
+    def self.parse(map_string, filename)
         glyphs = map_string.lines.map { |line| line.chomp.split("") }
-        return World.new(glyphs)
+        return World.new(glyphs, filename)
     end
 
     def to_s

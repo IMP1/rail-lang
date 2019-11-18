@@ -11,12 +11,12 @@ end
 
 class Runner
 
-    def initialize(source, filename="")
+    def initialize(source, filename)
         @stack = Stack.new
-        @worlds = create_worlds(source)
+        @worlds = create_worlds(source, filename)
     end
 
-    def create_worlds(source)
+    def create_worlds(source, filename)
         worlds = {}
         headers = source.lines
                         .select { |line| /\$\s*'.+?'/ === line }
@@ -27,7 +27,7 @@ class Runner
             title, line_start = *header
             line_end = headers[i+1].nil? ? source.lines.size : headers[i+1][1]
             world_source = source.lines[line_start...line_end].join("")
-            worlds[title] = World.parse(world_source)
+            worlds[title] = World.parse(world_source, filename)
         end
         return worlds
     end
@@ -45,9 +45,9 @@ class Runner
         cells[y][x] = "\e[31m\e[7m" + cells[y][x] + "\e[0m"
         world_string = cells.map { |line| "\t" + line.join("") }.join("\n")
         $stderr.puts "Crash! #{exception.message}"
-        $stderr.puts "\tin world #{func_name}"
+        $stderr.puts "\tin world #{func_name}  (#{current_function.world.filename})"
         current_function.parents.reverse.each do |parent|
-            $stderr.puts "\tin world #{parent.name}"
+            $stderr.puts "\tin world #{parent.name}  (#{current_function.world.filename})"
         end
         $stderr.puts "\tat #{y+1}:#{x+1}"
         $stderr.puts
