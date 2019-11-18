@@ -24,6 +24,12 @@ $ 'list-index' ( a b -- c ):
                                                               \--(index)0q-fq-<
                                                                                \-(tail)-1(index)s-{list-index}-#
 
+
+$ 'list-splat' ( a -- b... ):
+ \
+  ---#
+
+
 $ 'string-length' ( a b -- c ):
  \
   ---z---#
