@@ -31,11 +31,10 @@ test_run_3.ensure do |result|
 end
 
 
-
-test_run_3 = Test.run do
+test_run_4 = Test.run do
     Type.get_type({})
 end
-test_run_3.ensure do |result|
+test_run_4.ensure do |result|
     assert(result.success)
     assert(result.value == TYPE::LAMBDA)
 end

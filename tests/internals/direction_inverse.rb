@@ -22,10 +22,10 @@ test_run_2.ensure do |result|
 end
 
 
-test_run_2 = Test.run do
+test_run_3 = Test.run do
     Direction.inverse(Direction::SOUTH_EAST)
 end
-test_run_2.ensure do |result|
+test_run_3.ensure do |result|
     assert(result.success)
     assert(result.value == Direction::NORTH_WEST)
     assert(result.value != Direction::NORTH)
