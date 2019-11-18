@@ -19,7 +19,7 @@ $ \'countdown\'
    -(!a!)-(a)-0-q-<
                    \--0--o-#
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_1")
     runner.run
 end
 
@@ -43,7 +43,7 @@ $ \'countdown\'
    -(!a!)-(a)-0-q-<
                    \--0--o-#
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_2")
     runner.run
 end
 

@@ -12,7 +12,7 @@ $ \'main\'
  \
   --[1]-o-#
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_1")
     runner.run
 end
 
@@ -28,7 +28,7 @@ $ \'main\'
  \
   --]12[-o-#
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_2")
     runner.run
 end
 

@@ -11,7 +11,7 @@ test_run_1 = Test.run do
 $ \'main\'
  #
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_1")
     runner.run
 end
 

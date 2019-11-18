@@ -13,7 +13,7 @@ $ \'main\'
   \
    --  #
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_1")
     runner.run
 end
 
@@ -31,7 +31,7 @@ $ \'main\'
   
    ----#
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_2")
     runner.run
 end
 
@@ -49,7 +49,7 @@ $ \'main\'
  \
   |
 '
-    runner = Runner.new(source)
+    runner = Runner.new(source, __FILE__ + "/test_run_3")
     runner.run
 end
 
