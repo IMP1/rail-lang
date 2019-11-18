@@ -40,10 +40,10 @@ class RailFunction
     end
 
     def current_function
-        unless @child.nil?
-            return @child.current_function
-        else
+        if @child.nil?
             return self
+        else
+            return @child.current_function
         end
     end
 
@@ -72,6 +72,7 @@ class RailFunction
         end
         @child = RailFunction.new(function_name, world, @stack, @all_worlds, self)
         @child.run
+        @child = nil
         @running = true
     end
 
@@ -80,6 +81,7 @@ class RailFunction
         current_position = [*@train.position]
         @child = RailLambda.new("Lambda", lambda_details, @world, @stack, @variables, @all_worlds, self)
         @child.run
+        @child = nil
         @running = true
     end
 
