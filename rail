@@ -9,9 +9,6 @@ def main(input_path, verbose=nil, silent=nil, help=nil, initial_function: "main"
     begin
         runner.run(initial_function)
     rescue StandardError => e
-        if verbose
-            p e
-        end
     end
 end
 
