@@ -22,17 +22,17 @@ test_run_1.ensure do |result|
 end
 
 
-# test_run_2 = Test.run do
-#     source = '
-# $ \'main\'
-#  \
-#   ---[a]-{string-chars}-{list-splat}-o-#
-#     '
-#     runner = Runner.new(source, "string-lib.rl")
-#     runner.run
-# end
+test_run_2 = Test.run do
+    source = '
+$ \'main\'
+ \
+  ---[abcdef]-{string-chars}--{list-splat}-ooo[\n\]oooo-#
+    '
+    runner = Runner.new(source, "string-lib.rl")
+    runner.run
+end
 
-# test_run_2.ensure do |result|
-#     assert(result.success)
-#     puts result.output
-# end
+test_run_2.ensure do |result|
+    assert(result.success)
+    assert(result.output == "fed\ncba")
+end
