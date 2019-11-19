@@ -13,7 +13,17 @@ class Runner
 
     def initialize(source, filename)
         @stack = Stack.new
-        @worlds = create_worlds(source, filename)
+        @worlds = load_standard_library
+        @worlds.merge!(create_worlds(source, filename))
+    end
+
+    def load_standard_library
+        std_lib = {}
+        Dir["stdlib/*.rl"].each do |filename|
+            source = File.read(filename)
+            std_lib.merge!(create_worlds(source, filename))
+        end
+        return std_lib
     end
 
     def create_worlds(source, filename)
