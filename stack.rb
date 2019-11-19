@@ -25,4 +25,8 @@ class Stack
         @elements.size
     end
 
+    def to_s
+        @elements.inspect
+    end
+
 end

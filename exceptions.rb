@@ -48,7 +48,18 @@ end
 
 class TypeMismatchCrash < CrashException
     def initialize(expected, actual)
-        super("Type Mismatch: Expected something of type #{expected}, but got #{actual}")
+        super("Type Mismatch: Expected something of type #{expected}, but got '#{typed_value(actual)}'")
+    end
+
+    def typed_value(value)
+        case value
+        when Hash
+            return "<lambda>"
+        when Array
+            return value.inspect
+        when String
+            return value
+        end
     end
 end
 
