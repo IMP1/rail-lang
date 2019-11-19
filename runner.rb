@@ -65,6 +65,12 @@ class Runner
         $stderr.puts
         $stderr.puts world_string
         $stderr.puts
+        $stderr.puts "Stack: "
+        $stderr.puts current_function.instance_variable_get(:@stack).to_s
+        $stderr.puts
+        $stderr.puts "Variables: "
+        $stderr.puts current_function.instance_variable_get(:@variables).inspect
+        $stderr.puts
         exception.location = {
             function: func_name,
             cell: [x, y],
