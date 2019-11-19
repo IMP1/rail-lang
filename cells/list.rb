@@ -5,6 +5,9 @@ end
 Cell.create("Cons", ':') do |cell, world, train, stack, env|
     b = stack.pop
     a = stack.pop
+    unless Type.list?(a)
+        raise TypeMismatchCrash.new(Type::LIST, a)
+    end
     c = [b, *a]
     stack.push(c)
 end
