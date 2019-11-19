@@ -26,7 +26,7 @@ test_run_2 = Test.run do
     source = '
 $ \'main\'
  \
-  ---[abcdef]-{string-chars}--{list-splat}-ooo[\n\]oooo-#
+  ---[abcdef]-{string-chars}--{list-splat}-ooo-[\n\]o-ooo-#
     '
     runner = Runner.new(source, "string-lib.rl")
     runner.run
