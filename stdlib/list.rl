@@ -1,7 +1,7 @@
 $ 'list-reverse' ( a -- b ):
  \                                   /-(out)-#
   ---(!list!)n(!out!)---(list)nq-fq-<
-                     /               \-(list)~(!head!)(!tail!)-(head)(out):-\
+                     /               \-(list)~(!head!)(!tail!)-(out)(head):-\
                      |                                                      |
                      \----------------------------(!tsil!)(liat)---(!tuo!)--/
 
@@ -21,6 +21,9 @@ $ 'list-index' ( a b -- c ):
 
 
 $ 'list-splat' ( a -- b... ):
- \
-  ---#
+ \                            /-#
+  ---(!list!)---(list)nq-fq--<
+   /                          \-(list)~-\
+   |                                    |
+   \------------------------------------/
 

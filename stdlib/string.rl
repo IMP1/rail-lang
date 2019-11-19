@@ -18,13 +18,13 @@ $ 'string-repeat' ( a b -- c ):
 
 $ 'string-substring' ( a b c -- d ):
  \
-  ---(!start!)(!end!)(!string!)---(end)(string)c(!_!)(!string!)---(start)(string)c(!string!)(!_!)---(string)---#
+  ---(!start!)(!end!)(!string!)---(string)(end)c(!_!)(!string!)---(string)(start)c(!string!)(!_!)---(string)---#
 
 
 $ 'string-chars' ( a -- b ):
  \                                                       /-(out)---{list-reverse}---#
-  ---(!string!)n(!out!)---(string)z(!size!)---0(size)g--<
-                        /                                \-1(string)c(!string!)(out):--\
+  ---(!string!)n(!out!)---(string)z(!size!)---(size)0g--<
+                        /                                \-(out)(string)1c(!string!):--\
                         |                                                              |
                         \-----------------------------------------------------(!tuo!)--/
 
@@ -36,7 +36,7 @@ $ 'string-find' ( a b -- c ):
 
 $ 'string-find-from' ( a b c -- d ):
  \
-  ---(!start!)(!target!)(!string!)---(start)(string)c(!string!)(!_!)---(string){string-chars}(!chars!)---(chars)[10]{list-index}---#
+  ---(!start!)(!target!)(!string!)---(string)(start)c(!string!)(!_!)---(string){string-chars}(!chars!)---(chars)[10]{list-index}---#
 
 
 $ 'string-replace' ( a b -- c ):
