@@ -19,7 +19,17 @@ module Type
 
     def self.lambda?(value)
         return false if value.is_a?(Array)
-        return nil # TODO: How should this be implemented?
+        return value.is_a?(Hash)
+    end
+
+    def self.list?(value)
+        return false unless value.is_a?(Array)
+        return true
+    end
+
+    def self.nil?(value)
+        return false unless value.is_a?(Array)
+        return value.empty?
     end
 
     def self.to_boolean(value)
