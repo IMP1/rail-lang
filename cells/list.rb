@@ -3,8 +3,8 @@ Cell.create("Nil", 'n') do |cell, world, train, stack, env|
 end
 
 Cell.create("Cons", ':') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     c = [b, *a]
     stack.push(c)
 end

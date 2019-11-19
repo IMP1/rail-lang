@@ -9,21 +9,21 @@ Cell.create("True", 't') do |cell, world, train, stack, env|
 end
 
 Cell.create("Greater", 'g') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     c = (a > b) ? 1 : 0
     stack.push(c.to_s)
 end
 
 Cell.create("Equal", 'q') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     c = (a == b) ? 1 : 0
     stack.push(c.to_s)
 end
 
 Cell.create("Type", '?') do |cell, world, train, stack, env|
     a = stack.pop
-    c = Type.get_type(a)
-    stack.push(c.to_s)
+    b = Type.get_type(a)
+    stack.push(b.to_s)
 end

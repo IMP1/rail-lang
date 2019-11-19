@@ -1,6 +1,6 @@
 Cell.create("Cut", 'c') do |cell, world, train, stack, env|
-    str = stack.pop
     idx = stack.pop
+    str = stack.pop
     unless Type.numeric?(idx)
         raise TypeMismatchCrash.new(Type::NUMBER, idx)
     end
@@ -15,8 +15,8 @@ Cell.create("Cut", 'c') do |cell, world, train, stack, env|
 end
 
 Cell.create("Append", 'p') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     c = a + b
     stack.push(c)
 end

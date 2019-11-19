@@ -1,6 +1,6 @@
 Cell.create("Add", 'a') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     unless Type.numeric?(a)
         raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
@@ -12,8 +12,8 @@ Cell.create("Add", 'a') do |cell, world, train, stack, env|
 end
 
 Cell.create("Divide", 'd') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     unless Type.numeric?(a)
         raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
@@ -25,8 +25,8 @@ Cell.create("Divide", 'd') do |cell, world, train, stack, env|
 end
 
 Cell.create("Multiply", 'm') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     unless Type.numeric?(a)
         raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
@@ -38,8 +38,8 @@ Cell.create("Multiply", 'm') do |cell, world, train, stack, env|
 end
 
 Cell.create("Remainder", 'r') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     unless Type.numeric?(a)
         raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
@@ -51,8 +51,8 @@ Cell.create("Remainder", 'r') do |cell, world, train, stack, env|
 end
 
 Cell.create("Subtract", 's') do |cell, world, train, stack, env|
-    a = stack.pop
     b = stack.pop
+    a = stack.pop
     unless Type.numeric?(a)
         raise TypeMismatchCrash.new(Type::NUMBER, a)
     end
