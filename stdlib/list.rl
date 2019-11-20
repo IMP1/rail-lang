@@ -1,9 +1,9 @@
 $ 'list-reverse' ( a -- b ):
  \                                   /-(out)-#
   ---(!list!)n(!out!)---(list)nq-fq-<
-                     /               \-(list)~(!head!)(!tail!)-(out)(head):-\
+                     /               \-(list)~(!head!)(!list!)-(out)(head):-\
                      |                                                      |
-                     \----------------------------(!tsil!)(liat)---(!tuo!)--/
+                     \---------------------------------------------(!tuo!)--/
 
 
 $ 'list-length' ( a -- b ):
@@ -27,3 +27,29 @@ $ 'list-splat' ( a -- b... ):
    |                                    |
    \----(tsil)---(a)---(!tsil!)---(!a!)-/
 
+
+
+$ 'list-each' ( a b -- c ):
+ \                                     /-#
+  ---(!lambda!)(!list!)---(list)nq-fq-<
+                       /               \-(list)~(!head!)(!list!)-\
+                       |                                         |
+                       \------------------------{}(adbmal)(daeh)-/
+
+
+$ 'list-map' ( a b -- c ):
+ \                                              /-(out)-{list-reverse}-#
+  ---(!lambda!)(!list!)-n(!out!)---(list)nq-fq-<
+                                /               \-(list)~(!head!)(!list!)-\
+                                |                                         |
+                                \-(!tuo!)-:(a)(tuo)(!a!)-{}(adbmal)(daeh)-/
+
+
+$ 'list-filter' ( a b -- c ):
+ \
+  ---(!lambda!)(!list!)---#
+
+
+$ 'list-reduce' ( a b c -- d ):
+ \
+  ---(!lambda!)(!out!)(!list!)---#
