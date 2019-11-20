@@ -77,9 +77,11 @@ class RailFunction
     end
 
     def spawn_lambda(lambda_details)
+        world = @all_worlds[lambda_details[:world]]
+        variables = lambda_details[:env]
         @running = false
         current_position = [*@train.position]
-        @child = RailLambda.new("Lambda", lambda_details, @world, @stack, @variables, @all_worlds, self)
+        @child = RailLambda.new("Lambda", lambda_details, world, @stack, variables, @all_worlds, self)
         @child.run
         @child = nil
         @running = true

@@ -5,9 +5,11 @@ class World
     include Direction
 
     attr_reader :filename
+    attr_reader :function_name
 
-    def initialize(glyph_map, filename)
+    def initialize(glyph_map, filename, function_name)
         @filename = filename
+        @function_name = function_name
         @cells = glyph_map.map.with_index do |line, j| 
             line.map.with_index do |glyph, i| 
                 Cell.from_glyph(glyph, i, j)
@@ -15,9 +17,9 @@ class World
         end
     end
 
-    def self.parse(map_string, filename)
+    def self.parse(map_string, filename, function_name)
         glyphs = map_string.lines.map { |line| line.chomp.split("") }
-        return World.new(glyphs, filename)
+        return World.new(glyphs, filename, function_name)
     end
 
     def to_s

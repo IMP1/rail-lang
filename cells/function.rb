@@ -33,7 +33,9 @@ end
 Cell.create("Lambda", '&') do |cell, world, train, stack, env|
     l = { 
         position: [*train.position], 
-        direction: train.direction 
+        direction: train.direction,
+        env: env,
+        world: world.function_name,
     }
     stack.push(l)
     train.turn(Direction.inverse(train.direction))

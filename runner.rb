@@ -37,7 +37,7 @@ class Runner
             title, line_start = *header
             line_end = headers[i+1].nil? ? source.lines.size : headers[i+1][1]
             world_source = source.lines[line_start...line_end].join("")
-            worlds[title] = World.parse(world_source, filename)
+            worlds[title] = World.parse(world_source, filename, title)
         end
         return worlds
     end
