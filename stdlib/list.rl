@@ -46,10 +46,18 @@ $ 'list-map' ( a b -- c ):
 
 
 $ 'list-filter' ( a b -- c ):
- \
-  ---(!lambda!)(!list!)---#
-
+ \                                              /-(out)-{list-reverse}-#
+  ---(!lambda!)(!list!)-n(!out!)---(list)nq-fq-<
+                               /                \-(list)~(!head!)(!list!)-\
+                              /                                           |
+                              | /(!tuo!)-:(daeh)(tuo)-\                   |
+                              \-                       >-{}(adbmal)(daeh)-/
+                                \---------------------/
+                  
 
 $ 'list-reduce' ( a b c -- d ):
- \
-  ---(!lambda!)(!out!)(!list!)---#
+ \                                            /-(out)-#
+  ---(!lambda!)(!out!)(!list!)---(list)nq-fq-<
+                              /               \-(list)~(!head!)(!list!)-\
+                              |                                         |
+                              \-----------(!tuo!)-{}(adbmal)(daeh)(tuo)-/
