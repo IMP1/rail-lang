@@ -5,12 +5,12 @@ module RubyArgParse
     FLAG       = [:opt]
 
     def self.call(func)
-        args, kwargs = parse(func)
-        func.call(*args, **kwargs)
+        args, rest, kwargs = parse(func)
+        func.call(*args, *rest, **kwargs)
     end
 
     def self.parse(func)
-        cli_args = [*ARGV]
+        cli_args = ARGV
         args = []
         flags = []
         kwargs = {}
@@ -36,7 +36,7 @@ module RubyArgParse
         func.parameters.select { |param| POSITIONAL.include?(param[0]) }.each do |param|
             args.push(cli_args.shift)
         end
-        return args + flags, kwargs
+        return args + flags, cli_args, kwargs
     end
 
 end
