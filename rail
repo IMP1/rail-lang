@@ -3,12 +3,21 @@
 require_relative 'lib/rap'
 require_relative 'runner'
 
-def main(input_path, verbose=nil, silent=nil, help=nil, initial_function: "main")
+def main(input_path, verbose=nil, silent=nil, help=nil, initial_function: "main", args: nil)
     source = File.read(input_path)
+    ARGV.shift while ARGV.any?
+    unless args.nil?
+        args[1...-1].split(",").each { |arg| ARGV.push(arg) } 
+        if args == "[]"
+            ARGV.push("")
+        end
+    end
     runner = Runner.new(source, input_path)
     begin
         runner.run(initial_function)
     rescue StandardError => e
+    rescue Exception => e
+        exit(1)
     end
 end
 
