@@ -78,7 +78,7 @@ class Runner
         raise exception
     end
 
-    def run(func_name="main")
+    def run(func_name="main", options={})
         if @worlds[func_name].nil?
             crash(UndefinedFunctionCrash.new(func_name))
         end
