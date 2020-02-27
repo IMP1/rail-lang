@@ -1,7 +1,7 @@
 class Stack
 
-    def initialize
-        @elements = []
+    def initialize(initial=nil)
+        @elements = initial || []
     end
 
     def push(value)
