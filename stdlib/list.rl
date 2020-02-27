@@ -28,7 +28,6 @@ $ 'list-splat' ( a -- b... ):
    \----(tsil)---(a)---(!tsil!)---(!a!)-/
 
 
-
 $ 'list-each' ( a b -- c ):
  \                                     /-#
   ---(!lambda!)(!list!)---(list)nq-fq-<

@@ -29,6 +29,14 @@ $ 'string-chars' ( a -- b ):
                         \-----------------------------------------------------(!tuo!)--/
 
 
+$ 'string-reverse' ( a -- b ):
+ \                                                       /-(out)---{list-reverse}---#
+  ---(!string!)n(!out!)---(string)z(!size!)---(size)0g--<
+                        /                                \-(out)(string)1c(!string!):--\
+                        |                                                              |
+                        \-----------------------------------------------------(!tuo!)--/
+
+
 $ 'string-find' ( a b -- c ):
  \
   ---0{string-find-from}---#
